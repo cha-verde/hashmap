@@ -67,7 +67,7 @@ class LinkedList {
   }
 
   find(key, index = 0, node = this.first) {
-    if (node.nextNode == null && node.value != key) {
+    if (node.nextNode == null && node.key != key) {
       return null;
     }
     if (node.key == key) {
@@ -78,12 +78,24 @@ class LinkedList {
   }
 
   replaceValue(key, value, node) {
-    if (node.nextNode == null && node.value != value) {
+    if (node.nextNode == null && node.key != key) {
       return null;
     }
     if (node.key == key) {
         node.value = value;
         return;
+    } else {
+      return this.replaceValue(key, value, node.nextNode);
+    }
+  }
+
+
+  getValue(key, value, node) {
+    if (node.nextNode == null && node.key != key) {
+      return null;
+    }
+    if (node.key == key) {
+       return node.value;
     } else {
       return this.replaceValue(key, value, node.nextNode);
     }
@@ -116,6 +128,6 @@ list.append("sheep", "chocolate");
 list.append("cat", "fish")
 list.replaceValue("cat", "bus", list.first)
 
-console.log(list.toString());
+console.log(list.contains("cat"));
 
 export { Node, LinkedList };
